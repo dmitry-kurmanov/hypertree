@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel example/index.html -p 4321 --global SurveyJS",
+    "start": "parcel example/index.html -p 4321 --global HyperTree",
     "build": "parcel build index.html --public-url ./"
   },
   "repository": {

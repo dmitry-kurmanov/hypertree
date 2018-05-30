@@ -1,37 +1,35 @@
 import { h, app } from "hyperapp";
 
-import Radiogroup from "./components/radiogroup.js";
+import TreeItem from "./components/TreeItem.js";
+import TreeNode from "./components/TreeNode.js";
 
-export const render = (json, settings) => {
+export const render = settings => {
   const state = {
-    count: 0,
-    isComplete: false,
-    onComplete: null
+    title: settings.title,
+    items: settings.items
   };
 
   const actions = {
-    _down: value => state => ({ count: state.count - value }),
-    _up: value => state => ({ count: state.count + value }),
-    _doComplete: () => state => {
-      state.onComplete();
-      return { isComplete: true };
-    },
     getState: () => state => {
       return state;
-    },
-    addOnCompleteEventListener: listener => state => ({ onComplete: listener })
+    }
   };
 
-  Object.defineProperty(actions, "test1", {
-    get: function() {
-      return this.firstName + " " + this.surname;
-    }
-  });
+  const generateTreeMarkup = items => {
+    return items.map(item => {
+      if (Array.isArray(item.items)) {
+        var markup = generateTreeMarkup(item.items);
+        return <TreeNode text={item.text}>{markup}</TreeNode>;
+      }
+      return <TreeItem text={item.text} />;
+    });
+  };
 
   const view = (state, actions) => {
     return (
       <div>
-        <Radiogroup doComplete={actions._doComplete} />
+        <h1>{state.title}</h1>
+        {generateTreeMarkup(state.items)}
       </div>
     );
   };
@@ -39,9 +37,6 @@ export const render = (json, settings) => {
   const wiredActions = app(state, actions, view, document.body);
 
   return {
-    ...wiredActions,
-    getTest: () => {
-      return wiredActions.getState().count + "test";
-    }
+    ...wiredActions
   };
 };
