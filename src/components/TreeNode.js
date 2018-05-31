@@ -1,6 +1,6 @@
 import { h } from "hyperapp";
 
-const TreeNode = ({ text }, children) => {
+const TreeNode = ({ item }, children) => {
   const state = {
     isExpand: true
   };
@@ -14,8 +14,8 @@ const TreeNode = ({ text }, children) => {
       onremove={() => console.log("Radiogroup removed!")}
       style={{ marginLeft: "10px" }}
     >
-      <h4>{text}</h4>
-      if (state.isExpand) {{ children }}
+      <h4>{item.text}</h4>
+      {children}
     </div>
   );
 };
