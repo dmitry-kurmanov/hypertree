@@ -2,25 +2,38 @@
 
 const initState = settings => {
   let itemsCount = 0;
-  let nodesCount = 0;
   let items = settings.items;
 
   const normalizeItems = items => {
-    return items.forEach(item => {
+    let i, item, subitem, id;
+    let stack = items;
+    let result = {};
+
+    while (stack.length > 0) {
+      item = stack.pop();
+
+      id = "ht-item-" + itemsCount++;
+
       if (Array.isArray(item.items)) {
-        item.id = "ht-node-" + nodesCount++;
-        item.isExpand = true;
-        normalizeItems(item.items);
-      } else {
-        item.id = "ht-item-" + itemsCount++;
+        for (i = 0; i < item.items.length; i++) {
+          subitem = item.items[i];
+          subitem.parent = id;
+          stack.push(subitem);
+        }
+        delete item.items;
       }
-    });
+
+      item.id = id;
+
+      result[item.id] = item;
+    }
+
+    return result;
   };
-  normalizeItems(settings.items);
 
   return {
     title: settings.title,
-    items: settings.items
+    items: normalizeItems(settings.items)
   };
 };
 
