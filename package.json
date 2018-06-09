@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest --watch",
     "start": "parcel example/index.html -p 4321 --global HyperTree",
+    "prebuild": "jest --coverage --expand --notify",
     "build": "parcel build index.html --public-url ./"
   },
   "repository": {
@@ -22,6 +24,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
+    "jest": "^23.1.0",
     "parcel-bundler": "^1.8.1"
   },
   "dependencies": {
