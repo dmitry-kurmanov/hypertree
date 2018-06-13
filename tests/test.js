@@ -2,33 +2,33 @@ import { normalize } from "../src/index.js";
 
 var config = {
   title: "Hello Hyper Tree !",
-  children: [
+  nodes: [
     {
       text: "Node1",
       children: [
         {
-          text: "Node2"
+          text: "Node5"
+        }
+      ]
+    },
+    {
+      text: "Node2",
+      children: [
+        {
+          text: "Node6",
+          children: [
+            {
+              text: "Node10"
+            }
+          ]
+        },
+        {
+          text: "Node7"
         }
       ]
     },
     {
       text: "Node3",
-      children: [
-        {
-          text: "Node4",
-          children: [
-            {
-              text: "Node5"
-            }
-          ]
-        },
-        {
-          text: "Node6"
-        }
-      ]
-    },
-    {
-      text: "Node7",
       children: [
         {
           text: "Node8"
@@ -37,20 +37,20 @@ var config = {
           text: "Node9",
           children: [
             {
-              text: "Node10"
-            },
-            {
               text: "Node11"
             },
             {
               text: "Node12"
+            },
+            {
+              text: "Node13"
             }
           ]
         }
       ]
     },
     {
-      text: "Node13"
+      text: "Node4"
     }
   ]
 };
@@ -163,7 +163,7 @@ const normalizedTree = {
 };
 
 test("normalize", () => {
-  const result = normalize(config.children);
+  const result = normalize(config.nodes);
 
   expect(result).toEqual(normalizedTree);
 });

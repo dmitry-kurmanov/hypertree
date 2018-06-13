@@ -4,40 +4,66 @@ import TreeItem from "./components/TreeItem.js";
 import TreeNode from "./components/TreeNode.js";
 import actions from "./actions.js";
 
-export const render = settings => {
-  let itemsCount = 0;
+let nodesCount = 1;
 
-  const normalize = items => {
-    let id, item;
-    let stack = items;
-    let normalizedItems = {};
+export const normalize = nodes => {
+  let id, node;
+  let stack = nodes;
+  let normalizedTree = {};
 
-    while (stack.length > 0) {
-      item = stack.pop();
-      id = "ht-item-" + itemsCount++;
+  stack.forEach((node, index) => {
+    node.parentId = "root";
+    node.index = index + 1;
+    node.id = "ht-node-" + nodesCount++;
+    stack.forEach((siblingNode, siblingIndex) => {
+      if (!Array.isArray(siblingNode)) siblingNode.siblingsIds = [];
 
-      if (Array.isArray(item.items)) {
-        item.items.forEach(subitem => {
-          subitem.parent = id;
-          stack.push(subitem);
+      if (siblingIndex !== index) {
+        siblingNode.siblingsIds.push(node.id);
+      }
+    });
+  });
+
+  while (stack.length > 0) {
+    node = stack.shift();
+    id = node.id;
+
+    if (Array.isArray(node.children)) {
+      node.children.forEach((subnode, index) => {
+        subnode.id = "ht-node-" + nodesCount++;
+        subnode.parentId = id;
+        subnode.index = index + 1;
+
+        node.children.forEach((siblingNode, siblingIndex) => {
+          if (!Array.isArray(siblingNode)) siblingNode.siblingsIds = [];
+
+          if (siblingIndex !== index) {
+            siblingNode.siblingsIds.push(subnode.id);
+          }
         });
 
-        item.items = [];
-      }
+        stack.unshift(subnode);
+      });
 
-      item.id = id;
-      normalizedItems[id] = item;
+      delete node.children;
+      node.childrenIds = [];
     }
 
-    Object.keys(normalizedItems).forEach(itemId => {
-      let parentId = normalizedItems[itemId].parent;
-      if (parentId) normalizedItems[parentId].items.push(itemId);
-    });
-    return normalizedItems;
-  };
+    normalizedTree[id] = node;
+  }
 
-  const generateMarkup = normalizedItems => {
-    return normalizedItems;
+  Object.keys(normalizedTree).forEach(nodeId => {
+    let parentId = normalizedTree[nodeId].parentId;
+    if (parentId && parentId !== "root")
+      normalizedTree[parentId].childrenIds.push(nodeId);
+  });
+  return normalizedTree;
+};
+
+export const render = config => {
+  const generateMarkup = normalizedTree => {
+    return normalizedTree;
+
     // debugger;
     // let normalizedItem = null;
     // let normalizedArray = [];
@@ -96,7 +122,7 @@ export const render = settings => {
   };
 
   const view = (state, actions) => {
-    let markup = generateMarkup(state.items);
+    let markup = generateMarkup(state.nodes);
 
     return (
       <div>
@@ -107,8 +133,8 @@ export const render = settings => {
   };
 
   const state = {
-    title: settings.title,
-    items: normalize(settings.items)
+    title: config.title,
+    nodes: normalize(config.nodes)
   };
 
   const wiredActions = app(state, actions, view, document.body);
