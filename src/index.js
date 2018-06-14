@@ -16,7 +16,7 @@ export const normalize = nodes => {
     node.index = index + 1;
     node.id = "ht-node-" + nodesCount++;
     stack.forEach((siblingNode, siblingIndex) => {
-      if (!Array.isArray(siblingNode)) siblingNode.siblingsIds = [];
+      if (!Array.isArray(siblingNode.siblingsIds)) siblingNode.siblingsIds = [];
 
       if (siblingIndex !== index) {
         siblingNode.siblingsIds.push(node.id);
@@ -33,30 +33,29 @@ export const normalize = nodes => {
         subnode.id = "ht-node-" + nodesCount++;
         subnode.parentId = id;
         subnode.index = index + 1;
+        if (!Array.isArray(node.childrenIds)) node.childrenIds = [];
+        node.childrenIds.push(subnode.id);
 
         node.children.forEach((siblingNode, siblingIndex) => {
-          if (!Array.isArray(siblingNode)) siblingNode.siblingsIds = [];
+          if (!Array.isArray(siblingNode.siblingsIds))
+            siblingNode.siblingsIds = [];
 
           if (siblingIndex !== index) {
             siblingNode.siblingsIds.push(subnode.id);
           }
         });
 
-        stack.unshift(subnode);
+        stack.push(subnode);
       });
 
       delete node.children;
+    } else {
       node.childrenIds = [];
     }
 
     normalizedTree[id] = node;
   }
 
-  Object.keys(normalizedTree).forEach(nodeId => {
-    let parentId = normalizedTree[nodeId].parentId;
-    if (parentId && parentId !== "root")
-      normalizedTree[parentId].childrenIds.push(nodeId);
-  });
   return normalizedTree;
 };
 
