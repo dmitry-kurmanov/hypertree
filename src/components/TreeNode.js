@@ -1,14 +1,18 @@
 import { h } from "hyperapp";
 
-const TreeNode = ({ item, actions }, children) => {
+const TreeNode = ({ config, actions }, children) => {
+  // const clickHandler = event => {
+  //   config.isExpand ? actions.collapseNode(config.id) : actions.expandNode(config.id);
+  //   event.stopPropagation();
+  // };
+
   const clickHandler = event => {
-    item.isExpand ? actions.collapseNode(item.id) : actions.expandNode(item.id);
-    event.stopPropagation();
+    console.log("click " + config.id);
   };
 
   const style = {
-    marginLeft: "10px",
-    display: item.isExpand ? "block" : "none"
+    marginLeft: "10px"
+    // display: item.isExpand ? "block" : "none"
   };
 
   return (
@@ -17,8 +21,9 @@ const TreeNode = ({ item, actions }, children) => {
       onupdate={() => console.log("Radiogroup updated!")}
       onremove={() => console.log("Radiogroup removed!")}
       onclick={clickHandler}
+      key={config.id}
     >
-      <h4>{item.text}</h4>
+      <h4>{config.text}</h4>
       <div style={style}>{children}</div>
     </div>
   );

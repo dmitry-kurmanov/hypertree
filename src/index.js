@@ -1,6 +1,5 @@
 import { h, app } from "hyperapp";
 
-import TreeItem from "./components/TreeItem.js";
 import TreeNode from "./components/TreeNode.js";
 import actions from "./actions.js";
 
@@ -61,63 +60,30 @@ export const normalize = nodes => {
 
 export const render = config => {
   const generateMarkup = normalizedTree => {
-    return normalizedTree;
+    let stack = [];
+    let markup = [];
+    let nodeMarkup, nodeConfig, parentConfig, parentMarkup;
 
-    // debugger;
-    // let normalizedItem = null;
-    // let normalizedArray = [];
-    // let treeItem = null;
-    // let treeArray = [];
-    // let stack = null;
+    for (let nodeId in normalizedTree) {
+      nodeConfig = normalizedTree[nodeId];
+      if (nodeConfig.childrenIds.length === 0)
+        stack.push(<TreeNode config={nodeConfig} />);
+    }
 
-    // Object.keys(normalizedItems).forEach(key => {
-    //   normalizedArray.push(normalizedItems[key]); //init stack array
-    // });
+    while (stack.length > 0) {
+      nodeMarkup = stack.shift();
+      nodeConfig = normalizedTree[nodeMarkup.attributes.key];
 
-    // while (normalizedArray.length > 0) {
-    //   normalizedItem = normalizedArray.shift();
+      if (nodeConfig.parentId === "root") {
+        markup.push(nodeMarkup);
+      } else {
+        parentConfig = normalizedTree[nodeConfig.parentId];
+        parentMarkup = <TreeNode config={parentConfig}>{nodeMarkup}</TreeNode>;
+        stack.push(parentMarkup);
+      }
+    }
 
-    //   if (!normalizedItem.parent) {
-    //     treeArray.push(normalizedItem);
-    //   } else {
-    //     let isChildInserted = false;
-    //     stack = treeArray;
-
-    //     treeArray.forEach((treeItem, index) => {
-    //       // need to recursiv need to get nested children
-    //       if (normalizedItem.parent === treeItem.id) {
-    //         treeItem.items.push(normalizedItem);
-    //         isChildInserted = true;
-    //       }
-    //     });
-
-    //     if (!isChildInserted) normalizedArray.push(normalizedItem);
-    //   }
-    // }
-
-    // for (let i = 0; i < stack.length; i++) {
-    //   item = stack[i];
-    //   // arr = arr.filter(item => item !== value)
-
-    //   if (item.parent) {
-    //     //try to insert
-    //     markup.forEach(() => {});
-    //   } else {
-    //     markup.push(item);
-    //   }
-    // }
-
-    // if (item.parent) {
-    //   var markup = generateTreeMarkup(item.items, actions);
-    //   return (
-    //     <TreeNode item={item} actions={actions}>
-    //       {markup}
-    //     </TreeNode>
-    //   );
-    // }
-    // return <TreeItem text={item.text} />;
-
-    // return treeArray;
+    return markup;
   };
 
   const view = (state, actions) => {
