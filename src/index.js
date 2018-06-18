@@ -62,24 +62,29 @@ export const render = config => {
   const generateMarkup = normalizedTree => {
     let stack = [];
     let markup = [];
-    let nodeMarkup, nodeConfig, parentConfig, parentMarkup;
+    let nodeMarkup, nodeConfig, childConfig, childMarkup;
 
     for (let nodeId in normalizedTree) {
       nodeConfig = normalizedTree[nodeId];
-      if (nodeConfig.childrenIds.length === 0)
-        stack.push(<TreeNode config={nodeConfig} />);
+      if (nodeConfig.parentId === "root") {
+        nodeMarkup = <TreeNode config={nodeConfig} />;
+        stack.push(nodeMarkup);
+        markup.push(nodeMarkup);
+      }
     }
 
     while (stack.length > 0) {
       nodeMarkup = stack.shift();
       nodeConfig = normalizedTree[nodeMarkup.attributes.key];
 
-      if (nodeConfig.parentId === "root") {
-        markup.push(nodeMarkup);
-      } else {
-        parentConfig = normalizedTree[nodeConfig.parentId];
-        parentMarkup = <TreeNode config={parentConfig}>{nodeMarkup}</TreeNode>;
-        stack.push(parentMarkup);
+      if (nodeConfig.childrenIds.length !== 0) {
+        nodeConfig.childrenIds.forEach(childId => {
+          childConfig = normalizedTree[childId];
+          childMarkup = <TreeNode config={childConfig} />;
+          nodeMarkup.children[1].children.push(childMarkup); //bad code
+
+          if (childConfig.childrenIds.length !== 0) stack.push(childMarkup);
+        });
       }
     }
 
