@@ -27,6 +27,10 @@ export const normalize = nodes => {
     node = stack.shift();
     id = node.id;
 
+    /* defaults */
+    node.isVisible = true;
+    /* EO defaults */
+
     if (Array.isArray(node.children)) {
       node.children.forEach((subnode, index) => {
         subnode.id = "ht-node-" + nodesCount++;
@@ -59,7 +63,7 @@ export const normalize = nodes => {
 };
 
 export const render = config => {
-  const generateMarkup = normalizedTree => {
+  const generateMarkup = (normalizedTree, toggleNodeVisibility) => {
     let stack = [];
     let markup = [];
     let nodeMarkup, nodeConfig, childConfig, childMarkup;
@@ -67,7 +71,12 @@ export const render = config => {
     for (let nodeId in normalizedTree) {
       nodeConfig = normalizedTree[nodeId];
       if (nodeConfig.parentId === "root") {
-        nodeMarkup = <TreeNode config={nodeConfig} />;
+        nodeMarkup = (
+          <TreeNode
+            config={nodeConfig}
+            toggleNodeVisibility={toggleNodeVisibility}
+          />
+        );
         stack.push(nodeMarkup);
         markup.push(nodeMarkup);
       }
@@ -80,7 +89,12 @@ export const render = config => {
       if (nodeConfig.childrenIds.length !== 0) {
         nodeConfig.childrenIds.forEach(childId => {
           childConfig = normalizedTree[childId];
-          childMarkup = <TreeNode config={childConfig} />;
+          childMarkup = (
+            <TreeNode
+              config={childConfig}
+              toggleNodeVisibility={toggleNodeVisibility}
+            />
+          );
           nodeMarkup.children[1].children.push(childMarkup); //bad code
 
           if (childConfig.childrenIds.length !== 0) stack.push(childMarkup);
@@ -92,7 +106,7 @@ export const render = config => {
   };
 
   const view = (state, actions) => {
-    let markup = generateMarkup(state.nodes);
+    let markup = generateMarkup(state.nodes, actions.toggleNodeVisibility);
 
     return (
       <div>

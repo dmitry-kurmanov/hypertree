@@ -62,7 +62,8 @@ const normalizedTree = {
     index: 1,
     parentId: "root",
     childrenIds: ["ht-node-5"],
-    siblingsIds: ["ht-node-2", "ht-node-3", "ht-node-4"]
+    siblingsIds: ["ht-node-2", "ht-node-3", "ht-node-4"],
+    isVisible: true
   },
   "ht-node-2": {
     id: "ht-node-2",
@@ -70,7 +71,8 @@ const normalizedTree = {
     index: 2,
     parentId: "root",
     childrenIds: ["ht-node-6", "ht-node-7"],
-    siblingsIds: ["ht-node-1", "ht-node-3", "ht-node-4"]
+    siblingsIds: ["ht-node-1", "ht-node-3", "ht-node-4"],
+    isVisible: true
   },
   "ht-node-3": {
     id: "ht-node-3",
@@ -78,7 +80,8 @@ const normalizedTree = {
     index: 3,
     parentId: "root",
     childrenIds: ["ht-node-8", "ht-node-9"],
-    siblingsIds: ["ht-node-1", "ht-node-2", "ht-node-4"]
+    siblingsIds: ["ht-node-1", "ht-node-2", "ht-node-4"],
+    isVisible: true
   },
   "ht-node-4": {
     id: "ht-node-4",
@@ -86,7 +89,8 @@ const normalizedTree = {
     index: 4,
     parentId: "root",
     childrenIds: [],
-    siblingsIds: ["ht-node-1", "ht-node-2", "ht-node-3"]
+    siblingsIds: ["ht-node-1", "ht-node-2", "ht-node-3"],
+    isVisible: true
   },
   "ht-node-5": {
     id: "ht-node-5",
@@ -94,7 +98,8 @@ const normalizedTree = {
     index: 1,
     parentId: "ht-node-1",
     childrenIds: [],
-    siblingsIds: []
+    siblingsIds: [],
+    isVisible: true
   },
   "ht-node-6": {
     id: "ht-node-6",
@@ -102,7 +107,8 @@ const normalizedTree = {
     index: 1,
     parentId: "ht-node-2",
     childrenIds: ["ht-node-10"],
-    siblingsIds: ["ht-node-7"]
+    siblingsIds: ["ht-node-7"],
+    isVisible: true
   },
   "ht-node-7": {
     id: "ht-node-7",
@@ -110,7 +116,8 @@ const normalizedTree = {
     index: 2,
     parentId: "ht-node-2",
     childrenIds: [],
-    siblingsIds: ["ht-node-6"]
+    siblingsIds: ["ht-node-6"],
+    isVisible: true
   },
   "ht-node-8": {
     id: "ht-node-8",
@@ -118,7 +125,8 @@ const normalizedTree = {
     index: 1,
     parentId: "ht-node-3",
     childrenIds: [],
-    siblingsIds: ["ht-node-9"]
+    siblingsIds: ["ht-node-9"],
+    isVisible: true
   },
   "ht-node-9": {
     id: "ht-node-9",
@@ -126,7 +134,8 @@ const normalizedTree = {
     index: 2,
     parentId: "ht-node-3",
     childrenIds: ["ht-node-11", "ht-node-12", "ht-node-13"],
-    siblingsIds: ["ht-node-8"]
+    siblingsIds: ["ht-node-8"],
+    isVisible: true
   },
   "ht-node-10": {
     id: "ht-node-10",
@@ -134,7 +143,8 @@ const normalizedTree = {
     index: 1,
     parentId: "ht-node-6",
     childrenIds: [],
-    siblingsIds: []
+    siblingsIds: [],
+    isVisible: true
   },
   "ht-node-11": {
     id: "ht-node-11",
@@ -142,7 +152,8 @@ const normalizedTree = {
     index: 1,
     parentId: "ht-node-9",
     childrenIds: [],
-    siblingsIds: ["ht-node-12", "ht-node-13"]
+    siblingsIds: ["ht-node-12", "ht-node-13"],
+    isVisible: true
   },
   "ht-node-12": {
     id: "ht-node-12",
@@ -150,7 +161,8 @@ const normalizedTree = {
     index: 2,
     parentId: "ht-node-9",
     childrenIds: [],
-    siblingsIds: ["ht-node-11", "ht-node-13"]
+    siblingsIds: ["ht-node-11", "ht-node-13"],
+    isVisible: true
   },
   "ht-node-13": {
     id: "ht-node-13",
@@ -158,7 +170,8 @@ const normalizedTree = {
     index: 3,
     parentId: "ht-node-9",
     childrenIds: [],
-    siblingsIds: ["ht-node-11", "ht-node-12"]
+    siblingsIds: ["ht-node-11", "ht-node-12"],
+    isVisible: true
   }
 };
 

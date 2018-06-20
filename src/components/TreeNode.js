@@ -1,18 +1,20 @@
 import { h } from "hyperapp";
 
-const TreeNode = ({ config, actions }, children) => {
-  // const clickHandler = event => {
-  //   config.isExpand ? actions.collapseNode(config.id) : actions.expandNode(config.id);
-  //   event.stopPropagation();
-  // };
-
+const TreeNode = ({ config, toggleNodeVisibility }, children) => {
   const clickHandler = event => {
-    console.log("click " + config.id);
+    if (config.childrenIds.length !== 0) toggleNodeVisibility(config.id);
+    event.stopPropagation();
   };
 
   const style = {
-    marginLeft: "10px"
-    // display: item.isExpand ? "block" : "none"
+    marginLeft: "10px",
+    display: config.isVisible ? "block" : "none"
+  };
+
+  const renderHeader = () => {
+    if (config.childrenIds.length === 0) return <h4>{config.text}</h4>;
+    if (config.isVisible) return <h4>↑ {config.text}</h4>;
+    return <h4>↓ {config.text}</h4>;
   };
 
   return (
@@ -23,7 +25,7 @@ const TreeNode = ({ config, actions }, children) => {
       onclick={clickHandler}
       key={config.id}
     >
-      <h4>{config.text}</h4>
+      {renderHeader()}
       <div style={style}>{children}</div>
     </div>
   );
