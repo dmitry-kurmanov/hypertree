@@ -1,4 +1,4 @@
-var config = {
+const config = {
   title: "Hello Hyper Tree !",
   nodes: [
     {

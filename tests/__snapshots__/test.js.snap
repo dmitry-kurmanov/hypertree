@@ -1,0 +1,445 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`view matches snapshots 1`] = `
+Object {
+  "attributes": Object {},
+  "children": Array [
+    Object {
+      "attributes": Object {},
+      "children": Array [
+        "Hello Hyper Tree !",
+      ],
+      "key": null,
+      "nodeName": "h1",
+    },
+    Object {
+      "attributes": Object {
+        "key": "ht-node-14",
+        "onclick": [Function],
+        "oncreate": [Function],
+        "onremove": [Function],
+        "onupdate": [Function],
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {},
+          "children": Array [
+            "↑ ",
+            "Node1",
+          ],
+          "key": null,
+          "nodeName": "h4",
+        },
+        Object {
+          "attributes": Object {
+            "style": Object {
+              "display": "block",
+              "marginLeft": "10px",
+            },
+          },
+          "children": Array [
+            Object {
+              "attributes": Object {
+                "key": "ht-node-18",
+                "onclick": [Function],
+                "oncreate": [Function],
+                "onremove": [Function],
+                "onupdate": [Function],
+              },
+              "children": Array [
+                Object {
+                  "attributes": Object {},
+                  "children": Array [
+                    "Node5",
+                  ],
+                  "key": null,
+                  "nodeName": "h4",
+                },
+                Object {
+                  "attributes": Object {
+                    "style": Object {
+                      "display": "block",
+                      "marginLeft": "10px",
+                    },
+                  },
+                  "children": Array [],
+                  "key": undefined,
+                  "nodeName": "div",
+                },
+              ],
+              "key": "ht-node-18",
+              "nodeName": "div",
+            },
+          ],
+          "key": undefined,
+          "nodeName": "div",
+        },
+      ],
+      "key": "ht-node-14",
+      "nodeName": "div",
+    },
+    Object {
+      "attributes": Object {
+        "key": "ht-node-15",
+        "onclick": [Function],
+        "oncreate": [Function],
+        "onremove": [Function],
+        "onupdate": [Function],
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {},
+          "children": Array [
+            "↑ ",
+            "Node2",
+          ],
+          "key": null,
+          "nodeName": "h4",
+        },
+        Object {
+          "attributes": Object {
+            "style": Object {
+              "display": "block",
+              "marginLeft": "10px",
+            },
+          },
+          "children": Array [
+            Object {
+              "attributes": Object {
+                "key": "ht-node-19",
+                "onclick": [Function],
+                "oncreate": [Function],
+                "onremove": [Function],
+                "onupdate": [Function],
+              },
+              "children": Array [
+                Object {
+                  "attributes": Object {},
+                  "children": Array [
+                    "↑ ",
+                    "Node6",
+                  ],
+                  "key": null,
+                  "nodeName": "h4",
+                },
+                Object {
+                  "attributes": Object {
+                    "style": Object {
+                      "display": "block",
+                      "marginLeft": "10px",
+                    },
+                  },
+                  "children": Array [
+                    Object {
+                      "attributes": Object {
+                        "key": "ht-node-23",
+                        "onclick": [Function],
+                        "oncreate": [Function],
+                        "onremove": [Function],
+                        "onupdate": [Function],
+                      },
+                      "children": Array [
+                        Object {
+                          "attributes": Object {},
+                          "children": Array [
+                            "Node10",
+                          ],
+                          "key": null,
+                          "nodeName": "h4",
+                        },
+                        Object {
+                          "attributes": Object {
+                            "style": Object {
+                              "display": "block",
+                              "marginLeft": "10px",
+                            },
+                          },
+                          "children": Array [],
+                          "key": undefined,
+                          "nodeName": "div",
+                        },
+                      ],
+                      "key": "ht-node-23",
+                      "nodeName": "div",
+                    },
+                  ],
+                  "key": undefined,
+                  "nodeName": "div",
+                },
+              ],
+              "key": "ht-node-19",
+              "nodeName": "div",
+            },
+            Object {
+              "attributes": Object {
+                "key": "ht-node-20",
+                "onclick": [Function],
+                "oncreate": [Function],
+                "onremove": [Function],
+                "onupdate": [Function],
+              },
+              "children": Array [
+                Object {
+                  "attributes": Object {},
+                  "children": Array [
+                    "Node7",
+                  ],
+                  "key": null,
+                  "nodeName": "h4",
+                },
+                Object {
+                  "attributes": Object {
+                    "style": Object {
+                      "display": "block",
+                      "marginLeft": "10px",
+                    },
+                  },
+                  "children": Array [],
+                  "key": undefined,
+                  "nodeName": "div",
+                },
+              ],
+              "key": "ht-node-20",
+              "nodeName": "div",
+            },
+          ],
+          "key": undefined,
+          "nodeName": "div",
+        },
+      ],
+      "key": "ht-node-15",
+      "nodeName": "div",
+    },
+    Object {
+      "attributes": Object {
+        "key": "ht-node-16",
+        "onclick": [Function],
+        "oncreate": [Function],
+        "onremove": [Function],
+        "onupdate": [Function],
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {},
+          "children": Array [
+            "↑ ",
+            "Node3",
+          ],
+          "key": null,
+          "nodeName": "h4",
+        },
+        Object {
+          "attributes": Object {
+            "style": Object {
+              "display": "block",
+              "marginLeft": "10px",
+            },
+          },
+          "children": Array [
+            Object {
+              "attributes": Object {
+                "key": "ht-node-21",
+                "onclick": [Function],
+                "oncreate": [Function],
+                "onremove": [Function],
+                "onupdate": [Function],
+              },
+              "children": Array [
+                Object {
+                  "attributes": Object {},
+                  "children": Array [
+                    "Node8",
+                  ],
+                  "key": null,
+                  "nodeName": "h4",
+                },
+                Object {
+                  "attributes": Object {
+                    "style": Object {
+                      "display": "block",
+                      "marginLeft": "10px",
+                    },
+                  },
+                  "children": Array [],
+                  "key": undefined,
+                  "nodeName": "div",
+                },
+              ],
+              "key": "ht-node-21",
+              "nodeName": "div",
+            },
+            Object {
+              "attributes": Object {
+                "key": "ht-node-22",
+                "onclick": [Function],
+                "oncreate": [Function],
+                "onremove": [Function],
+                "onupdate": [Function],
+              },
+              "children": Array [
+                Object {
+                  "attributes": Object {},
+                  "children": Array [
+                    "↑ ",
+                    "Node9",
+                  ],
+                  "key": null,
+                  "nodeName": "h4",
+                },
+                Object {
+                  "attributes": Object {
+                    "style": Object {
+                      "display": "block",
+                      "marginLeft": "10px",
+                    },
+                  },
+                  "children": Array [
+                    Object {
+                      "attributes": Object {
+                        "key": "ht-node-24",
+                        "onclick": [Function],
+                        "oncreate": [Function],
+                        "onremove": [Function],
+                        "onupdate": [Function],
+                      },
+                      "children": Array [
+                        Object {
+                          "attributes": Object {},
+                          "children": Array [
+                            "Node11",
+                          ],
+                          "key": null,
+                          "nodeName": "h4",
+                        },
+                        Object {
+                          "attributes": Object {
+                            "style": Object {
+                              "display": "block",
+                              "marginLeft": "10px",
+                            },
+                          },
+                          "children": Array [],
+                          "key": undefined,
+                          "nodeName": "div",
+                        },
+                      ],
+                      "key": "ht-node-24",
+                      "nodeName": "div",
+                    },
+                    Object {
+                      "attributes": Object {
+                        "key": "ht-node-25",
+                        "onclick": [Function],
+                        "oncreate": [Function],
+                        "onremove": [Function],
+                        "onupdate": [Function],
+                      },
+                      "children": Array [
+                        Object {
+                          "attributes": Object {},
+                          "children": Array [
+                            "Node12",
+                          ],
+                          "key": null,
+                          "nodeName": "h4",
+                        },
+                        Object {
+                          "attributes": Object {
+                            "style": Object {
+                              "display": "block",
+                              "marginLeft": "10px",
+                            },
+                          },
+                          "children": Array [],
+                          "key": undefined,
+                          "nodeName": "div",
+                        },
+                      ],
+                      "key": "ht-node-25",
+                      "nodeName": "div",
+                    },
+                    Object {
+                      "attributes": Object {
+                        "key": "ht-node-26",
+                        "onclick": [Function],
+                        "oncreate": [Function],
+                        "onremove": [Function],
+                        "onupdate": [Function],
+                      },
+                      "children": Array [
+                        Object {
+                          "attributes": Object {},
+                          "children": Array [
+                            "Node13",
+                          ],
+                          "key": null,
+                          "nodeName": "h4",
+                        },
+                        Object {
+                          "attributes": Object {
+                            "style": Object {
+                              "display": "block",
+                              "marginLeft": "10px",
+                            },
+                          },
+                          "children": Array [],
+                          "key": undefined,
+                          "nodeName": "div",
+                        },
+                      ],
+                      "key": "ht-node-26",
+                      "nodeName": "div",
+                    },
+                  ],
+                  "key": undefined,
+                  "nodeName": "div",
+                },
+              ],
+              "key": "ht-node-22",
+              "nodeName": "div",
+            },
+          ],
+          "key": undefined,
+          "nodeName": "div",
+        },
+      ],
+      "key": "ht-node-16",
+      "nodeName": "div",
+    },
+    Object {
+      "attributes": Object {
+        "key": "ht-node-17",
+        "onclick": [Function],
+        "oncreate": [Function],
+        "onremove": [Function],
+        "onupdate": [Function],
+      },
+      "children": Array [
+        Object {
+          "attributes": Object {},
+          "children": Array [
+            "Node4",
+          ],
+          "key": null,
+          "nodeName": "h4",
+        },
+        Object {
+          "attributes": Object {
+            "style": Object {
+              "display": "block",
+              "marginLeft": "10px",
+            },
+          },
+          "children": Array [],
+          "key": undefined,
+          "nodeName": "div",
+        },
+      ],
+      "key": "ht-node-17",
+      "nodeName": "div",
+    },
+  ],
+  "key": null,
+  "nodeName": "div",
+}
+`;

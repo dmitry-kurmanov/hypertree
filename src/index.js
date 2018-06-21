@@ -62,60 +62,60 @@ export const normalize = nodes => {
   return normalizedTree;
 };
 
-export const render = config => {
-  const generateMarkup = (normalizedTree, toggleNodeVisibility) => {
-    let stack = [];
-    let markup = [];
-    let nodeMarkup, nodeConfig, childConfig, childMarkup;
+const generateMarkup = (normalizedTree, toggleNodeVisibility) => {
+  let stack = [];
+  let markup = [];
+  let nodeMarkup, nodeConfig, childConfig, childMarkup;
 
-    for (let nodeId in normalizedTree) {
-      nodeConfig = normalizedTree[nodeId];
-      if (nodeConfig.parentId === "root") {
-        nodeMarkup = (
+  for (let nodeId in normalizedTree) {
+    nodeConfig = normalizedTree[nodeId];
+    if (nodeConfig.parentId === "root") {
+      nodeMarkup = (
+        <TreeNode
+          config={nodeConfig}
+          toggleNodeVisibility={toggleNodeVisibility}
+        />
+      );
+      stack.push(nodeMarkup);
+      markup.push(nodeMarkup);
+    }
+  }
+
+  while (stack.length > 0) {
+    nodeMarkup = stack.shift();
+    nodeConfig = normalizedTree[nodeMarkup.attributes.key];
+
+    if (nodeConfig.childrenIds.length !== 0) {
+      nodeConfig.childrenIds.forEach(childId => {
+        childConfig = normalizedTree[childId];
+        childMarkup = (
           <TreeNode
-            config={nodeConfig}
+            config={childConfig}
             toggleNodeVisibility={toggleNodeVisibility}
           />
         );
-        stack.push(nodeMarkup);
-        markup.push(nodeMarkup);
-      }
+        nodeMarkup.children[1].children.push(childMarkup); //bad code
+
+        if (childConfig.childrenIds.length !== 0) stack.push(childMarkup);
+      });
     }
+  }
 
-    while (stack.length > 0) {
-      nodeMarkup = stack.shift();
-      nodeConfig = normalizedTree[nodeMarkup.attributes.key];
+  return markup;
+};
 
-      if (nodeConfig.childrenIds.length !== 0) {
-        nodeConfig.childrenIds.forEach(childId => {
-          childConfig = normalizedTree[childId];
-          childMarkup = (
-            <TreeNode
-              config={childConfig}
-              toggleNodeVisibility={toggleNodeVisibility}
-            />
-          );
-          nodeMarkup.children[1].children.push(childMarkup); //bad code
+export const view = (state, actions) => {
+  let markup = generateMarkup(state.nodes, actions.toggleNodeVisibility);
 
-          if (childConfig.childrenIds.length !== 0) stack.push(childMarkup);
-        });
-      }
-    }
+  return (
+    <div>
+      <h1>{state.title}</h1>
+      {markup}
+    </div>
+  );
+};
 
-    return markup;
-  };
-
-  const view = (state, actions) => {
-    let markup = generateMarkup(state.nodes, actions.toggleNodeVisibility);
-
-    return (
-      <div>
-        <h1>{state.title}</h1>
-        {markup}
-      </div>
-    );
-  };
-
+export const render = config => {
   const state = {
     title: config.title,
     nodes: normalize(config.nodes)
