@@ -53,6 +53,12 @@ var config = {
   ]
 };
 
+// for (let i = 0; i < 1000; i++) {
+//   config.nodes[0].children.push({
+//     text: "generated node " + i
+//   });
+// }
+
 window.hypertree = new HyperTree.render(config);
 
 // hypertree.addOnCompleteEventListener(() =>

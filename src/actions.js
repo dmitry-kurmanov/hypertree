@@ -3,8 +3,9 @@ const actions = {
     return state;
   },
   toggleNodeVisibility: id => state => {
-    state.nodes[id].isVisible = !state.nodes[id].isVisible;
-    return { ...state };
+    let node = state.nodes[id];
+    node.isVisible = !node.isVisible;
+    return { ...state, id: node };
   }
 };
 
