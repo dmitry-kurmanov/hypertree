@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --watch",
     "testdebug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "testupdatesnapshots": "jest --updateSnapshot",
     "start": "parcel example/index.html -p 4321 --global HyperTree",
     "prebuild": "jest --coverage --expand --notify",
     "build": "parcel build index.html --public-url ./"

@@ -3,9 +3,7 @@ import { h, app } from "hyperapp";
 import TreeNode from "./components/TreeNode.js";
 import actions from "./actions.js";
 
-let nodesCount = 1;
-
-export const normalize = nodes => {
+export const normalize = (nodes, nodesCount) => {
   let id, node;
   let stack = nodes;
   let normalizedTree = {};
@@ -62,7 +60,7 @@ export const normalize = nodes => {
   return normalizedTree;
 };
 
-const generateMarkup = (normalizedTree, toggleNodeExpandCollapse) => {
+export const generateMarkup = (normalizedTree, toggleNodeExpandCollapse) => {
   let stack = [];
   let markup = [];
   let nodeMarkup, nodeConfig, childConfig, childMarkup;
@@ -118,7 +116,7 @@ export const view = (state, actions) => {
 export const render = config => {
   const state = {
     title: config.title,
-    nodes: normalize(config.nodes)
+    nodes: normalize(config.nodes, 1)
   };
 
   const wiredActions = app(state, actions, view, document.body);

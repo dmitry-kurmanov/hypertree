@@ -1,9 +1,10 @@
-import { normalize } from "../src/index.js";
-import { view } from "../src/index.js";
+import { normalize, view, render } from "../src/index.js";
 import actions from "../src/actions.js";
 
-test("normalize", () => {
-  const config = {
+beforeEach(() => {
+  jest.resetModules();
+
+  config = {
     title: "Hello Hyper Tree !",
     nodes: [
       {
@@ -57,7 +58,11 @@ test("normalize", () => {
       }
     ]
   };
+});
 
+let config;
+
+test("normalize", () => {
   const normalizedTree = {
     "ht-node-1": {
       id: "ht-node-1",
@@ -178,74 +183,38 @@ test("normalize", () => {
     }
   };
 
-  const result = normalize(config.nodes);
+  const result = normalize(config.nodes, 1);
 
   expect(result).toEqual(normalizedTree);
 });
 
-test("view matches snapshots", () => {
-  const config = {
-    title: "Hello Hyper Tree !",
-    nodes: [
-      {
-        text: "Node1",
-        children: [
-          {
-            text: "Node5"
-          }
-        ]
-      },
-      {
-        text: "Node2",
-        children: [
-          {
-            text: "Node6",
-            children: [
-              {
-                text: "Node10"
-              }
-            ]
-          },
-          {
-            text: "Node7"
-          }
-        ]
-      },
-      {
-        text: "Node3",
-        children: [
-          {
-            text: "Node8"
-          },
-          {
-            text: "Node9",
-            children: [
-              {
-                text: "Node11"
-              },
-              {
-                text: "Node12"
-              },
-              {
-                text: "Node13"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        text: "Node4"
-      }
-    ]
-  };
-
+test("main view matches snapshots", () => {
   const state = {
     title: config.title,
-    nodes: normalize(config.nodes)
+    nodes: normalize(config.nodes, 1)
   };
 
   var snapshot = view(state, actions);
-  debugger;
 
   expect(snapshot).toMatchSnapshot();
+});
+
+test("toggleNodeExpandCollapse test", () => {
+  const nodeId = "ht-node-1";
+
+  const hypertree = render(config);
+
+  expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
+  hypertree.toggleNodeExpandCollapse(nodeId);
+  expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(false);
+  hypertree.toggleNodeExpandCollapse(nodeId);
+  expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
+});
+
+test("change title test", () => {
+  const newTitle = "Hello HyperTree Test!";
+  const hypertree = render(config);
+
+  hypertree.changeTitle(newTitle);
+  expect(hypertree.getState().title).toEqual(newTitle);
 });
