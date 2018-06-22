@@ -66,7 +66,7 @@ test("normalize", () => {
       parentId: "root",
       childrenIds: ["ht-node-5"],
       siblingsIds: ["ht-node-2", "ht-node-3", "ht-node-4"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-2": {
       id: "ht-node-2",
@@ -75,7 +75,7 @@ test("normalize", () => {
       parentId: "root",
       childrenIds: ["ht-node-6", "ht-node-7"],
       siblingsIds: ["ht-node-1", "ht-node-3", "ht-node-4"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-3": {
       id: "ht-node-3",
@@ -84,7 +84,7 @@ test("normalize", () => {
       parentId: "root",
       childrenIds: ["ht-node-8", "ht-node-9"],
       siblingsIds: ["ht-node-1", "ht-node-2", "ht-node-4"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-4": {
       id: "ht-node-4",
@@ -93,7 +93,7 @@ test("normalize", () => {
       parentId: "root",
       childrenIds: [],
       siblingsIds: ["ht-node-1", "ht-node-2", "ht-node-3"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-5": {
       id: "ht-node-5",
@@ -102,7 +102,7 @@ test("normalize", () => {
       parentId: "ht-node-1",
       childrenIds: [],
       siblingsIds: [],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-6": {
       id: "ht-node-6",
@@ -111,7 +111,7 @@ test("normalize", () => {
       parentId: "ht-node-2",
       childrenIds: ["ht-node-10"],
       siblingsIds: ["ht-node-7"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-7": {
       id: "ht-node-7",
@@ -120,7 +120,7 @@ test("normalize", () => {
       parentId: "ht-node-2",
       childrenIds: [],
       siblingsIds: ["ht-node-6"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-8": {
       id: "ht-node-8",
@@ -129,7 +129,7 @@ test("normalize", () => {
       parentId: "ht-node-3",
       childrenIds: [],
       siblingsIds: ["ht-node-9"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-9": {
       id: "ht-node-9",
@@ -138,7 +138,7 @@ test("normalize", () => {
       parentId: "ht-node-3",
       childrenIds: ["ht-node-11", "ht-node-12", "ht-node-13"],
       siblingsIds: ["ht-node-8"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-10": {
       id: "ht-node-10",
@@ -147,7 +147,7 @@ test("normalize", () => {
       parentId: "ht-node-6",
       childrenIds: [],
       siblingsIds: [],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-11": {
       id: "ht-node-11",
@@ -156,7 +156,7 @@ test("normalize", () => {
       parentId: "ht-node-9",
       childrenIds: [],
       siblingsIds: ["ht-node-12", "ht-node-13"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-12": {
       id: "ht-node-12",
@@ -165,7 +165,7 @@ test("normalize", () => {
       parentId: "ht-node-9",
       childrenIds: [],
       siblingsIds: ["ht-node-11", "ht-node-13"],
-      isVisible: true
+      isExpand: true
     },
     "ht-node-13": {
       id: "ht-node-13",
@@ -174,7 +174,7 @@ test("normalize", () => {
       parentId: "ht-node-9",
       childrenIds: [],
       siblingsIds: ["ht-node-11", "ht-node-12"],
-      isVisible: true
+      isExpand: true
     }
   };
 

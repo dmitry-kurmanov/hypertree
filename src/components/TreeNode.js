@@ -1,19 +1,19 @@
 import { h } from "hyperapp";
 
-const TreeNode = ({ config, toggleNodeVisibility }, children) => {
+const TreeNode = ({ config, toggleNodeExpandCollapse }, children) => {
   const clickHandler = event => {
-    if (config.childrenIds.length !== 0) toggleNodeVisibility(config.id);
+    if (config.childrenIds.length !== 0) toggleNodeExpandCollapse(config.id);
     event.stopPropagation();
   };
 
   const style = {
     marginLeft: "10px",
-    display: config.isVisible ? "block" : "none"
+    display: config.isExpand ? "block" : "none"
   };
 
   const renderHeader = () => {
     if (config.childrenIds.length === 0) return <h4>{config.text}</h4>;
-    if (config.isVisible) return <h4>↑ {config.text}</h4>;
+    if (config.isExpand) return <h4>↑ {config.text}</h4>;
     return <h4>↓ {config.text}</h4>;
   };
 

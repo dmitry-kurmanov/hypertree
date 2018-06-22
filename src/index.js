@@ -28,7 +28,7 @@ export const normalize = nodes => {
     id = node.id;
 
     /* defaults */
-    node.isVisible = true;
+    node.isExpand = true;
     /* EO defaults */
 
     if (Array.isArray(node.children)) {
@@ -62,7 +62,7 @@ export const normalize = nodes => {
   return normalizedTree;
 };
 
-const generateMarkup = (normalizedTree, toggleNodeVisibility) => {
+const generateMarkup = (normalizedTree, toggleNodeExpandCollapse) => {
   let stack = [];
   let markup = [];
   let nodeMarkup, nodeConfig, childConfig, childMarkup;
@@ -73,7 +73,7 @@ const generateMarkup = (normalizedTree, toggleNodeVisibility) => {
       nodeMarkup = (
         <TreeNode
           config={nodeConfig}
-          toggleNodeVisibility={toggleNodeVisibility}
+          toggleNodeExpandCollapse={toggleNodeExpandCollapse}
         />
       );
       stack.push(nodeMarkup);
@@ -91,7 +91,7 @@ const generateMarkup = (normalizedTree, toggleNodeVisibility) => {
         childMarkup = (
           <TreeNode
             config={childConfig}
-            toggleNodeVisibility={toggleNodeVisibility}
+            toggleNodeExpandCollapse={toggleNodeExpandCollapse}
           />
         );
         nodeMarkup.children[1].children.push(childMarkup); //bad code
@@ -105,7 +105,7 @@ const generateMarkup = (normalizedTree, toggleNodeVisibility) => {
 };
 
 export const view = (state, actions) => {
-  let markup = generateMarkup(state.nodes, actions.toggleNodeVisibility);
+  let markup = generateMarkup(state.nodes, actions.toggleNodeExpandCollapse);
 
   return (
     <div>

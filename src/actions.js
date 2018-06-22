@@ -2,9 +2,9 @@ const actions = {
   getState: () => state => {
     return state;
   },
-  toggleNodeVisibility: id => state => {
+  toggleNodeExpandCollapse: id => state => {
     let node = state.nodes[id];
-    node.isVisible = !node.isVisible;
+    node.isExpand = !node.isExpand;
     return { ...state, id: node };
   }
 };
