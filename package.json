@@ -9,7 +9,7 @@
     "testupdatesnapshots": "jest --updateSnapshot",
     "start": "parcel example/index.html -p 4321 --global HyperTree",
     "prebuild": "jest --coverage --expand --notify",
-    "build": "parcel build index.html --public-url ./"
+    "build": "parcel build example/index.html --public-url ./"
   },
   "repository": {
     "type": "git",
