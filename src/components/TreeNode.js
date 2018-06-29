@@ -1,8 +1,8 @@
 import { h } from "hyperapp";
 
-const TreeNode = ({ config, toggleNodeExpandCollapse }, children) => {
+const TreeNode = ({ config, toggleExpandCollapse }, children) => {
   const clickHandler = event => {
-    if (config.childrenIds.length !== 0) toggleNodeExpandCollapse(config.id);
+    if (config.childrenIds.length !== 0) toggleExpandCollapse(config.id);
     event.stopPropagation();
   };
 
@@ -23,6 +23,7 @@ const TreeNode = ({ config, toggleNodeExpandCollapse }, children) => {
       onupdate={() => console.log("Radiogroup updated!")}
       onremove={() => console.log("Radiogroup removed!")}
       onclick={clickHandler}
+      name={config.id}
       key={config.id}
     >
       {renderHeader()}

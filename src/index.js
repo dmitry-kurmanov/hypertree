@@ -60,7 +60,7 @@ export const normalize = (nodes, nodesCount) => {
   return normalizedTree;
 };
 
-export const generateMarkup = (normalizedTree, toggleNodeExpandCollapse) => {
+export const generateMarkup = (normalizedTree, toggleExpandCollapse) => {
   let stack = [];
   let markup = [];
   let nodeMarkup, nodeConfig, childConfig, childMarkup;
@@ -71,7 +71,7 @@ export const generateMarkup = (normalizedTree, toggleNodeExpandCollapse) => {
       nodeMarkup = (
         <TreeNode
           config={nodeConfig}
-          toggleNodeExpandCollapse={toggleNodeExpandCollapse}
+          toggleExpandCollapse={toggleExpandCollapse}
         />
       );
       stack.push(nodeMarkup);
@@ -89,7 +89,7 @@ export const generateMarkup = (normalizedTree, toggleNodeExpandCollapse) => {
         childMarkup = (
           <TreeNode
             config={childConfig}
-            toggleNodeExpandCollapse={toggleNodeExpandCollapse}
+            toggleExpandCollapse={toggleExpandCollapse}
           />
         );
         nodeMarkup.children[1].children.push(childMarkup); //bad code
@@ -103,7 +103,7 @@ export const generateMarkup = (normalizedTree, toggleNodeExpandCollapse) => {
 };
 
 export const view = (state, actions) => {
-  let markup = generateMarkup(state.nodes, actions.toggleNodeExpandCollapse);
+  let markup = generateMarkup(state.nodes, actions.toggleExpandCollapse);
 
   return (
     <div>
@@ -116,6 +116,7 @@ export const view = (state, actions) => {
 export const render = config => {
   const state = {
     title: config.title,
+    actionHandlers: {},
     nodes: normalize(config.nodes, 1)
   };
 

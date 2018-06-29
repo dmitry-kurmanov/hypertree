@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`view matches snapshots 1`] = `
+exports[`main view matches snapshots 1`] = `
 Object {
   "attributes": Object {},
   "children": Array [
@@ -14,7 +14,8 @@ Object {
     },
     Object {
       "attributes": Object {
-        "key": "ht-node-14",
+        "key": "ht-node-1",
+        "name": "ht-node-1",
         "onclick": [Function],
         "oncreate": [Function],
         "onremove": [Function],
@@ -40,7 +41,8 @@ Object {
           "children": Array [
             Object {
               "attributes": Object {
-                "key": "ht-node-18",
+                "key": "ht-node-5",
+                "name": "ht-node-5",
                 "onclick": [Function],
                 "oncreate": [Function],
                 "onremove": [Function],
@@ -67,7 +69,7 @@ Object {
                   "nodeName": "div",
                 },
               ],
-              "key": "ht-node-18",
+              "key": "ht-node-5",
               "nodeName": "div",
             },
           ],
@@ -75,12 +77,13 @@ Object {
           "nodeName": "div",
         },
       ],
-      "key": "ht-node-14",
+      "key": "ht-node-1",
       "nodeName": "div",
     },
     Object {
       "attributes": Object {
-        "key": "ht-node-15",
+        "key": "ht-node-2",
+        "name": "ht-node-2",
         "onclick": [Function],
         "oncreate": [Function],
         "onremove": [Function],
@@ -106,7 +109,8 @@ Object {
           "children": Array [
             Object {
               "attributes": Object {
-                "key": "ht-node-19",
+                "key": "ht-node-6",
+                "name": "ht-node-6",
                 "onclick": [Function],
                 "oncreate": [Function],
                 "onremove": [Function],
@@ -132,7 +136,8 @@ Object {
                   "children": Array [
                     Object {
                       "attributes": Object {
-                        "key": "ht-node-23",
+                        "key": "ht-node-10",
+                        "name": "ht-node-10",
                         "onclick": [Function],
                         "oncreate": [Function],
                         "onremove": [Function],
@@ -159,7 +164,7 @@ Object {
                           "nodeName": "div",
                         },
                       ],
-                      "key": "ht-node-23",
+                      "key": "ht-node-10",
                       "nodeName": "div",
                     },
                   ],
@@ -167,12 +172,13 @@ Object {
                   "nodeName": "div",
                 },
               ],
-              "key": "ht-node-19",
+              "key": "ht-node-6",
               "nodeName": "div",
             },
             Object {
               "attributes": Object {
-                "key": "ht-node-20",
+                "key": "ht-node-7",
+                "name": "ht-node-7",
                 "onclick": [Function],
                 "oncreate": [Function],
                 "onremove": [Function],
@@ -199,7 +205,7 @@ Object {
                   "nodeName": "div",
                 },
               ],
-              "key": "ht-node-20",
+              "key": "ht-node-7",
               "nodeName": "div",
             },
           ],
@@ -207,12 +213,13 @@ Object {
           "nodeName": "div",
         },
       ],
-      "key": "ht-node-15",
+      "key": "ht-node-2",
       "nodeName": "div",
     },
     Object {
       "attributes": Object {
-        "key": "ht-node-16",
+        "key": "ht-node-3",
+        "name": "ht-node-3",
         "onclick": [Function],
         "oncreate": [Function],
         "onremove": [Function],
@@ -238,7 +245,8 @@ Object {
           "children": Array [
             Object {
               "attributes": Object {
-                "key": "ht-node-21",
+                "key": "ht-node-8",
+                "name": "ht-node-8",
                 "onclick": [Function],
                 "oncreate": [Function],
                 "onremove": [Function],
@@ -265,12 +273,13 @@ Object {
                   "nodeName": "div",
                 },
               ],
-              "key": "ht-node-21",
+              "key": "ht-node-8",
               "nodeName": "div",
             },
             Object {
               "attributes": Object {
-                "key": "ht-node-22",
+                "key": "ht-node-9",
+                "name": "ht-node-9",
                 "onclick": [Function],
                 "oncreate": [Function],
                 "onremove": [Function],
@@ -296,7 +305,8 @@ Object {
                   "children": Array [
                     Object {
                       "attributes": Object {
-                        "key": "ht-node-24",
+                        "key": "ht-node-11",
+                        "name": "ht-node-11",
                         "onclick": [Function],
                         "oncreate": [Function],
                         "onremove": [Function],
@@ -323,12 +333,13 @@ Object {
                           "nodeName": "div",
                         },
                       ],
-                      "key": "ht-node-24",
+                      "key": "ht-node-11",
                       "nodeName": "div",
                     },
                     Object {
                       "attributes": Object {
-                        "key": "ht-node-25",
+                        "key": "ht-node-12",
+                        "name": "ht-node-12",
                         "onclick": [Function],
                         "oncreate": [Function],
                         "onremove": [Function],
@@ -355,12 +366,13 @@ Object {
                           "nodeName": "div",
                         },
                       ],
-                      "key": "ht-node-25",
+                      "key": "ht-node-12",
                       "nodeName": "div",
                     },
                     Object {
                       "attributes": Object {
-                        "key": "ht-node-26",
+                        "key": "ht-node-13",
+                        "name": "ht-node-13",
                         "onclick": [Function],
                         "oncreate": [Function],
                         "onremove": [Function],
@@ -387,7 +399,7 @@ Object {
                           "nodeName": "div",
                         },
                       ],
-                      "key": "ht-node-26",
+                      "key": "ht-node-13",
                       "nodeName": "div",
                     },
                   ],
@@ -395,7 +407,7 @@ Object {
                   "nodeName": "div",
                 },
               ],
-              "key": "ht-node-22",
+              "key": "ht-node-9",
               "nodeName": "div",
             },
           ],
@@ -403,12 +415,13 @@ Object {
           "nodeName": "div",
         },
       ],
-      "key": "ht-node-16",
+      "key": "ht-node-3",
       "nodeName": "div",
     },
     Object {
       "attributes": Object {
-        "key": "ht-node-17",
+        "key": "ht-node-4",
+        "name": "ht-node-4",
         "onclick": [Function],
         "oncreate": [Function],
         "onremove": [Function],
@@ -435,7 +448,7 @@ Object {
           "nodeName": "div",
         },
       ],
-      "key": "ht-node-17",
+      "key": "ht-node-4",
       "nodeName": "div",
     },
   ],

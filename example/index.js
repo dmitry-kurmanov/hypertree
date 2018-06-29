@@ -61,6 +61,22 @@ const config = {
 
 window.hypertree = new HyperTree.render(config);
 
+hypertree.addActionHandler({
+  actionName: "toggleExpandCollapse",
+  beforeOrAfter: "before",
+  handler: function() {
+    console.log("before toggleExpandCollapse");
+  }
+});
+
+hypertree.addActionHandler({
+  actionName: "toggleExpandCollapse",
+  beforeOrAfter: "after",
+  handler: function() {
+    console.log("after toggleExpandCollapse");
+  }
+});
+
 // hypertree.addOnCompleteEventListener(() =>
 //   console.log("onComplete evetasddasn!!!")
 // );

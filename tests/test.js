@@ -199,15 +199,14 @@ test("main view matches snapshots", () => {
   expect(snapshot).toMatchSnapshot();
 });
 
-test("toggleNodeExpandCollapse test", () => {
+test("toggleExpandCollapse test", () => {
   const nodeId = "ht-node-1";
-
   const hypertree = render(config);
 
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
-  hypertree.toggleNodeExpandCollapse(nodeId);
+  hypertree.toggleExpandCollapse(nodeId);
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(false);
-  hypertree.toggleNodeExpandCollapse(nodeId);
+  hypertree.toggleExpandCollapse(nodeId);
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
 });
 
@@ -217,4 +216,25 @@ test("change title test", () => {
 
   hypertree.changeTitle(newTitle);
   expect(hypertree.getState().title).toEqual(newTitle);
+});
+
+test("event test", () => {
+  const nodeId = "ht-node-1";
+  const hypertree = render(config);
+  let count = 0;
+
+  hypertree.addActionHandler({
+    actionName: "toggleExpandCollapse",
+    handler: function() {
+      count++;
+    }
+  });
+  hypertree.toggleExpandCollapse(nodeId);
+  expect(count).toEqual(1);
+
+  hypertree.toggleExpandCollapse(nodeId);
+  expect(count).toEqual(2);
+
+  hypertree.toggleExpandCollapse(nodeId);
+  expect(count).toEqual(3);
 });
