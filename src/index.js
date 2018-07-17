@@ -8,17 +8,19 @@ export const normalize = (nodes, nodesCount) => {
   let stack = nodes;
   let normalizedTree = {};
 
+  const addNodeToSiblings = (node, nodes) => {
+    nodes.forEach((siblingNode, siblingIndex) => {
+      if (!Array.isArray(siblingNode.siblingsIds)) siblingNode.siblingsIds = [];
+      if (siblingIndex === node.index - 1) return;
+      siblingNode.siblingsIds.push(node.id);
+    });
+  };
+
   stack.forEach((node, index) => {
     node.parentId = "root";
     node.index = index + 1;
     node.id = "ht-node-" + nodesCount++;
-    stack.forEach((siblingNode, siblingIndex) => {
-      if (!Array.isArray(siblingNode.siblingsIds)) siblingNode.siblingsIds = [];
-
-      if (siblingIndex !== index) {
-        siblingNode.siblingsIds.push(node.id);
-      }
-    });
+    addNodeToSiblings(node, stack);
   });
 
   while (stack.length > 0) {
@@ -26,25 +28,19 @@ export const normalize = (nodes, nodesCount) => {
     id = node.id;
 
     /* defaults */
-    node.isExpand = true;
+    if (typeof node.isExpand !== typeof true) node.isExpand = true;
     /* EO defaults */
 
     if (Array.isArray(node.children)) {
       node.children.forEach((subnode, index) => {
-        subnode.id = "ht-node-" + nodesCount++;
         subnode.parentId = id;
         subnode.index = index + 1;
+        subnode.id = "ht-node-" + nodesCount++;
+
         if (!Array.isArray(node.childrenIds)) node.childrenIds = [];
         node.childrenIds.push(subnode.id);
 
-        node.children.forEach((siblingNode, siblingIndex) => {
-          if (!Array.isArray(siblingNode.siblingsIds))
-            siblingNode.siblingsIds = [];
-
-          if (siblingIndex !== index) {
-            siblingNode.siblingsIds.push(subnode.id);
-          }
-        });
+        addNodeToSiblings(subnode, node.children);
 
         stack.push(subnode);
       });
