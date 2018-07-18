@@ -19,9 +19,9 @@ const TreeNode = ({ config, toggleExpandCollapse }, children) => {
 
   return (
     <div
-      oncreate={() => console.log("Radiogroup created!")}
-      onupdate={() => console.log("Radiogroup updated!")}
-      onremove={() => console.log("Radiogroup removed!")}
+      oncreate={() => console.log("Node created!")}
+      onupdate={() => console.log("Node updated!")}
+      onremove={() => console.log("Node removed!")}
       onclick={clickHandler}
       name={config.id}
       key={config.id}

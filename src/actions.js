@@ -6,13 +6,14 @@ const actions = {
     return { ...state, title: title };
   },
   toggleExpandCollapse: id => (state, actions) => {
-    actions._toggleExpandCollapse(id);
     state.actionHandlers.toggleExpandCollapse &&
-      state.actionHandlers.toggleExpandCollapse.forEach(handler => {
-        handler();
-      });
-  },
-  _toggleExpandCollapse: id => state => {
+      state.actionHandlers.toggleExpandCollapse();
+
+    // setTimeout(()=>{
+    //   state.actionHandlers.toggleExpandCollapse &&
+    //   state.actionHandlers.toggleExpandCollapse();
+    // }) //TODO need to implement custom event
+
     const node = state.nodes[id];
     const isExpand = !node.isExpand;
     return {
@@ -29,19 +30,12 @@ const actions = {
   addActionHandler: config => state => {
     let actionName = config.actionName;
     let handler = config.handler;
-    let handlers;
-    if (!state.actionHandlers[actionName]) {
-      handlers = [];
-    } else {
-      handlers = state.actionHandlers[actionName].slice();
-    }
-    handlers.push(handler);
 
     return {
       ...state,
       actionHandlers: {
         ...state.actionHandlers,
-        [actionName]: handlers
+        [actionName]: handler
       }
     };
   }

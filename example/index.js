@@ -59,24 +59,11 @@ const config = {
 //   });
 // }
 
-window.hypertree = new HyperTree.render(config);
+window.hypertree = HyperTree.render(config);
 
 hypertree.addActionHandler({
   actionName: "toggleExpandCollapse",
-  beforeOrAfter: "before",
   handler: function() {
-    console.log("before toggleExpandCollapse");
+    console.log("on toggleExpandCollapse event! ");
   }
 });
-
-hypertree.addActionHandler({
-  actionName: "toggleExpandCollapse",
-  beforeOrAfter: "after",
-  handler: function() {
-    console.log("after toggleExpandCollapse");
-  }
-});
-
-// hypertree.addOnCompleteEventListener(() =>
-//   console.log("onComplete evetasddasn!!!")
-// );
