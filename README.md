@@ -1,7 +1,7 @@
 *this is just experiment with hyperapp*
 
 # HYPERTREE
-A tree component library based on [hyperapp](https://github.com/hyperapp/hyperapp)
+A treeview component library based on [hyperapp](https://github.com/hyperapp/hyperapp)
 
 # How to build?
 * clone the repo
