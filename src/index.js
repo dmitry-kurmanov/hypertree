@@ -1,7 +1,7 @@
 import { h, app } from "hyperapp";
 
-import TreeNode from "./components/TreeNode.js";
-import actions from "./actions.js";
+import { TreeNode } from "./components/TreeNode.js";
+import { actions } from "./actions.js";
 
 export const normalize = (nodes, nodesCount) => {
   let id, node;
@@ -56,7 +56,7 @@ export const normalize = (nodes, nodesCount) => {
   return normalizedTree;
 };
 
-export const generateMarkup = (normalizedTree, toggleExpandCollapse) => {
+export const generateMarkup = (normalizedTree, callAction) => {
   let stack = [];
   let markup = [];
   let nodeMarkup, nodeConfig, childConfig, childMarkup;
@@ -64,12 +64,7 @@ export const generateMarkup = (normalizedTree, toggleExpandCollapse) => {
   for (let nodeId in normalizedTree) {
     nodeConfig = normalizedTree[nodeId];
     if (nodeConfig.parentId === "root") {
-      nodeMarkup = (
-        <TreeNode
-          config={nodeConfig}
-          toggleExpandCollapse={toggleExpandCollapse}
-        />
-      );
+      nodeMarkup = <TreeNode config={nodeConfig} callAction={callAction} />;
       stack.push(nodeMarkup);
       markup.push(nodeMarkup);
     }
@@ -82,12 +77,7 @@ export const generateMarkup = (normalizedTree, toggleExpandCollapse) => {
     if (nodeConfig.childrenIds.length !== 0) {
       nodeConfig.childrenIds.forEach(childId => {
         childConfig = normalizedTree[childId];
-        childMarkup = (
-          <TreeNode
-            config={childConfig}
-            toggleExpandCollapse={toggleExpandCollapse}
-          />
-        );
+        childMarkup = <TreeNode config={childConfig} callAction={callAction} />;
         nodeMarkup.children[1].children.push(childMarkup); //bad code
 
         if (childConfig.childrenIds.length !== 0) stack.push(childMarkup);
@@ -98,8 +88,23 @@ export const generateMarkup = (normalizedTree, toggleExpandCollapse) => {
   return markup;
 };
 
+export const callAction = (actionName, payload, actions) => {
+  if (!actions[actionName]) {
+    console.warn("you try to call wrong action!");
+    return;
+  }
+
+  const newState = actions[actionName](payload);
+  newState.subscribeHandler({
+    actionName,
+    newState
+  });
+};
+
 export const view = (state, actions) => {
-  let markup = generateMarkup(state.nodes, actions.toggleExpandCollapse);
+  const doCallAction = (actionName, payload) =>
+    callAction(actionName, payload, actions);
+  let markup = generateMarkup(state.nodes, doCallAction);
 
   return (
     <div>
@@ -113,13 +118,17 @@ export const render = config => {
   const state = {
     title: config.title,
     actionHandlers: {},
-    subscribeHandler: () => { },
+    subscribeHandler: () => {},
     nodes: normalize(config.nodes, 1)
   };
 
   const wiredActions = app(state, actions, view, document.body);
 
   return {
-    ...wiredActions
+    //doc: {actionName: "description"}, // TODO
+    getState: wiredActions.getState,
+    callAction: (actionName, payload) =>
+      callAction(actionName, payload, wiredActions),
+    subscribe: wiredActions.subscribe
   };
 };

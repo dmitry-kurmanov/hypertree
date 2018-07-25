@@ -61,13 +61,6 @@ const config = {
 
 window.hypertree = HyperTree.render(config);
 
-hypertree.addActionHandler({
-  actionName: "toggleExpandCollapse",
-  handler: function () {
-    console.log("actionHandler: on toggleExpandCollapse event! ");
-  }
-});
-
 hypertree.subscribe(function (data) {
   console.log("subscribe: on " + data.actionName + " event!");
 })

@@ -1,8 +1,9 @@
 import { h } from "hyperapp";
 
-const TreeNode = ({ config, toggleExpandCollapse }, children) => {
+export const TreeNode = ({ config, callAction }, children) => {
   const clickHandler = event => {
-    if (config.childrenIds.length !== 0) toggleExpandCollapse(config.id);
+    if (config.childrenIds.length !== 0)
+      callAction("toggleExpandCollapse", config.id);
     event.stopPropagation();
   };
 
@@ -31,5 +32,3 @@ const TreeNode = ({ config, toggleExpandCollapse }, children) => {
     </div>
   );
 };
-
-export default TreeNode;

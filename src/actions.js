@@ -1,19 +1,20 @@
-const actions = {
+export const actions = {
   getState: () => state => {
     return state;
   },
-  changeTitle: title => state => {
-    const newState = { ...state, title: title };
-    state.subscribeHandler({
-      actionName: "changeTitle",
-      newState: newState
-    });
-    return newState;
+
+  subscribe: handler => state => {
+    return { ...state, subscribeHandler: handler };
   },
+
+  changeTitle: title => state => {
+    return { ...state, title: title };
+  },
+
   toggleExpandCollapse: id => (state, actions) => {
     const node = state.nodes[id];
     const isExpand = !node.isExpand;
-    const newState = {
+    return {
       ...state,
       nodes: {
         ...state.nodes,
@@ -23,37 +24,5 @@ const actions = {
         }
       }
     };
-    state.subscribeHandler({
-      actionName: "toggleExpandCollapse",
-      newState: newState
-    });
-
-    state.actionHandlers.toggleExpandCollapse &&
-      state.actionHandlers.toggleExpandCollapse();
-
-    // setTimeout(()=>{
-    //   state.actionHandlers.toggleExpandCollapse &&
-    //   state.actionHandlers.toggleExpandCollapse();
-    // }) //TODO need to implement custom event
-
-    return newState;
-  },
-  addActionHandler: config => state => {
-    let actionName = config.actionName;
-    let handler = config.handler;
-
-    return {
-      ...state,
-      actionHandlers: {
-        ...state.actionHandlers,
-        [actionName]: handler
-      }
-    };
-  },
-  subscribe: handler => state => {
-    return { ...state, subscribeHandler: handler };
   }
-
 };
-
-export default actions;

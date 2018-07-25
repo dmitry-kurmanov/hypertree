@@ -204,9 +204,9 @@ test("toggleExpandCollapse test", () => {
   const hypertree = render(config);
 
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
-  hypertree.toggleExpandCollapse(nodeId);
+  hypertree.callAction("toggleExpandCollapse", nodeId);
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(false);
-  hypertree.toggleExpandCollapse(nodeId);
+  hypertree.callAction("toggleExpandCollapse", nodeId);
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
 });
 
@@ -214,29 +214,8 @@ test("change title test", () => {
   const newTitle = "Hello HyperTree Test!";
   const hypertree = render(config);
 
-  hypertree.changeTitle(newTitle);
+  hypertree.callAction("changeTitle", newTitle);
   expect(hypertree.getState().title).toEqual(newTitle);
-});
-
-test("addActionHandler test", () => {
-  const nodeId = "ht-node-1";
-  const hypertree = render(config);
-  let count = 0;
-
-  hypertree.addActionHandler({
-    actionName: "toggleExpandCollapse",
-    handler: function () {
-      count++;
-    }
-  });
-  hypertree.toggleExpandCollapse(nodeId);
-  expect(count).toEqual(1);
-
-  hypertree.toggleExpandCollapse(nodeId);
-  expect(count).toEqual(2);
-
-  hypertree.toggleExpandCollapse(nodeId);
-  expect(count).toEqual(3);
 });
 
 test("subscribe test", () => {
@@ -245,7 +224,7 @@ test("subscribe test", () => {
   let count = 0;
   let newTitle = null;
 
-  hypertree.subscribe(function (data) {
+  hypertree.subscribe(function(data) {
     if (data.actionName === "changeTitle") {
       newTitle = data.newState.title;
     }
@@ -255,15 +234,15 @@ test("subscribe test", () => {
     }
   });
 
-  hypertree.toggleExpandCollapse(nodeId);
+  hypertree.callAction("toggleExpandCollapse", nodeId);
   expect(count).toEqual(1);
 
-  hypertree.toggleExpandCollapse(nodeId);
+  hypertree.callAction("toggleExpandCollapse", nodeId);
   expect(count).toEqual(2);
 
-  hypertree.toggleExpandCollapse(nodeId);
+  hypertree.callAction("toggleExpandCollapse", nodeId);
   expect(count).toEqual(3);
 
-  hypertree.changeTitle("New Title!");
+  hypertree.callAction("changeTitle", "New Title!");
   expect(newTitle).toEqual("New Title!");
 });
