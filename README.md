@@ -10,4 +10,4 @@ A treeview component library based on [hyperapp](https://github.com/hyperapp/hyp
 * `npm test` to run tests (thanks to [jest](https://github.com/facebook/jest) )
 
 # How to use?
-look at [example](https://github.com/dmitrykurmanov/hypertree/tree/master/example) folder
+please look at [example](http://plnkr.co/edit/LXrlHj0DNeKe86s76sGA?p=preview)
