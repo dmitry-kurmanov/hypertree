@@ -218,14 +218,14 @@ test("change title test", () => {
   expect(hypertree.getState().title).toEqual(newTitle);
 });
 
-test("event test", () => {
+test("addActionHandler test", () => {
   const nodeId = "ht-node-1";
   const hypertree = render(config);
   let count = 0;
 
   hypertree.addActionHandler({
     actionName: "toggleExpandCollapse",
-    handler: function() {
+    handler: function () {
       count++;
     }
   });
@@ -237,4 +237,33 @@ test("event test", () => {
 
   hypertree.toggleExpandCollapse(nodeId);
   expect(count).toEqual(3);
+});
+
+test("subscribe test", () => {
+  const nodeId = "ht-node-1";
+  const hypertree = render(config);
+  let count = 0;
+  let newTitle = null;
+
+  hypertree.subscribe(function (data) {
+    if (data.actionName === "changeTitle") {
+      newTitle = data.newState.title;
+    }
+
+    if (data.actionName === "toggleExpandCollapse") {
+      count++;
+    }
+  });
+
+  hypertree.toggleExpandCollapse(nodeId);
+  expect(count).toEqual(1);
+
+  hypertree.toggleExpandCollapse(nodeId);
+  expect(count).toEqual(2);
+
+  hypertree.toggleExpandCollapse(nodeId);
+  expect(count).toEqual(3);
+
+  hypertree.changeTitle("New Title!");
+  expect(newTitle).toEqual("New Title!");
 });

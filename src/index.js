@@ -113,6 +113,7 @@ export const render = config => {
   const state = {
     title: config.title,
     actionHandlers: {},
+    subscribeHandler: () => { },
     nodes: normalize(config.nodes, 1)
   };
 
