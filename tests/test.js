@@ -199,14 +199,18 @@ test("main view matches snapshots", () => {
   expect(snapshot).toMatchSnapshot();
 });
 
-test("toggleExpandCollapse test", () => {
+test("toggleExpandCollapse, expandNodeById, collapseNodeById  test", () => {
   const nodeId = "ht-node-1";
   const hypertree = render(config);
 
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
   hypertree.callAction("toggleExpandCollapse", nodeId);
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(false);
-  hypertree.callAction("toggleExpandCollapse", nodeId);
+
+  hypertree.callAction("expandNodeById", nodeId);
+  expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
+  
+  hypertree.callAction("collapseNodeById", nodeId);
   expect(hypertree.getState().nodes[nodeId].isExpand).toEqual(true);
 });
 

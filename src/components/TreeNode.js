@@ -2,9 +2,14 @@ import { h } from "hyperapp";
 
 export const TreeNode = ({ config, callAction }, children) => {
   const clickHandler = event => {
-    if (config.childrenIds.length !== 0)
-      callAction("toggleExpandCollapse", config.id);
     event.stopPropagation();
+    if (config.childrenIds.length === 0) return;
+
+    if (config.isExpand) {
+      callAction("collaspeNodeById", config.id);
+    } else {
+      callAction("expandNodeById", config.id);
+    }
   };
 
   const style = {

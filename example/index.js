@@ -59,8 +59,11 @@ const config = {
 //   });
 // }
 
-window.hypertree = HyperTree.render(config);
+window.hypertree = HyperTree.render(
+  config,
+  document.querySelector("#hypertree")
+);
 
-hypertree.subscribe(function (data) {
+hypertree.subscribe(function(data) {
   console.log("subscribe: on " + data.actionName + " event!");
-})
+});

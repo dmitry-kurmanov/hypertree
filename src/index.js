@@ -114,7 +114,7 @@ export const view = (state, actions) => {
   );
 };
 
-export const render = config => {
+export const render = (config, container) => {
   const state = {
     title: config.title,
     actionHandlers: {},
@@ -122,7 +122,7 @@ export const render = config => {
     nodes: normalize(config.nodes, 1)
   };
 
-  const wiredActions = app(state, actions, view, document.body);
+  const wiredActions = app(state, actions, view, container);
 
   return {
     //doc: {actionName: "description"}, // TODO
