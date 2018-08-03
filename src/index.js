@@ -29,6 +29,7 @@ export const normalize = (nodes, nodesCount) => {
 
     /* defaults */
     if (typeof node.isExpand !== typeof true) node.isExpand = true;
+    if (typeof node.isSelected !== typeof true) node.isSelected = false;
     /* EO defaults */
 
     if (Array.isArray(node.children)) {
@@ -36,6 +37,10 @@ export const normalize = (nodes, nodesCount) => {
         subnode.parentId = id;
         subnode.index = index + 1;
         subnode.id = "ht-node-" + nodesCount++;
+
+        if (nodesCount === 1) {
+          node.isSelected = true;
+        }
 
         if (!Array.isArray(node.childrenIds)) node.childrenIds = [];
         node.childrenIds.push(subnode.id);
@@ -93,7 +98,6 @@ export const callAction = (actionName, payload, actions) => {
     console.warn("you try to call wrong action!");
     return;
   }
-
   const newState = actions[actionName](payload);
   newState.subscribeHandler({
     actionName,
@@ -119,7 +123,8 @@ export const render = (config, container) => {
     title: config.title,
     actionHandlers: {},
     subscribeHandler: () => {},
-    nodes: normalize(config.nodes, 1)
+    nodes: normalize(config.nodes, 1),
+    selectedNodeId: "ht-node-1"
   };
 
   const wiredActions = app(state, actions, view, container);

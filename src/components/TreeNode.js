@@ -10,6 +10,7 @@ export const TreeNode = ({ config, callAction }, children) => {
     } else {
       callAction("expandNodeById", config.id);
     }
+    callAction("selectNodeById", config.id);
   };
 
   const style = {
@@ -17,10 +18,17 @@ export const TreeNode = ({ config, callAction }, children) => {
     display: config.isExpand ? "block" : "none"
   };
 
+  let selectedStyle = null;
+  if (config.isSelected) {
+    selectedStyle = {
+      color: "orange"
+    };
+  }
+
   const renderHeader = () => {
     if (config.childrenIds.length === 0) return <h4>{config.text}</h4>;
     if (config.isExpand) return <h4>↑ {config.text}</h4>;
-    return <h4>↓ {config.text}</h4>;
+    return <h4 style={selectedStyle}>↓ {config.text}</h4>;
   };
 
   return (

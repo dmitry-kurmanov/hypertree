@@ -4,6 +4,10 @@ export const actions = {
     return state;
   },
 
+  setState: newState => state => {
+    return { ...newState };
+  },
+
   subscribe: handler => state => {
     return { ...state, subscribeHandler: handler };
   },
@@ -52,6 +56,30 @@ export const actions = {
         [id]: {
           ...node,
           isExpand
+        }
+      }
+    };
+  },
+
+  selectNodeById: id => (state, actions) => {
+    const oldNodeId = state.selectedNodeId;
+    const oldNode = state.nodes[oldNodeId];
+
+    const newNodeId = id;
+    const newNode = state.nodes[id];
+
+    return {
+      ...state,
+      selectedNodeId: newNodeId,
+      nodes: {
+        ...state.nodes,
+        [oldNodeId]: {
+          ...oldNode,
+          isSelected: false
+        },
+        [newNodeId]: {
+          ...newNode,
+          isSelected: true
         }
       }
     };
